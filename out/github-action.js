@@ -24218,7 +24218,6 @@ var RevefiIntegration = class {
     core.debug(`Sending POST request to: ${revefiReviewUrl}`);
     core.debug(`Request: ${JSON.stringify(request, null, 2)}`);
     const response = await fetch(revefiReviewUrl, {
-      // "http://localhost:3000/api/v1/schema-review", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${this.apiToken}`,
