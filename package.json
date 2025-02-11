@@ -1,0 +1,28 @@
+{
+  "name": "github-integration",
+  "version": "1.0.0",
+  "description": "Official Revefi Github Integration",
+  "author": "https://github.com/jake-revefi",
+  "keywords": [],
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=out/github-action.js",
+    "test": "jest"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/exec": "^1.1.1",
+    "@actions/github": "^6.0.0",
+    "@jest/globals": "^29.7.0",
+    "esbuild": "^0.24.2",
+    "glob": "^11.0.1",
+    "openai": "^4.80.1",
+    "ts-jest": "^29.2.5",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "graphql": "^16.10.0"
+  }
+}

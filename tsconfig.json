@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+
+    "rootDir": ".",
+    "outDir": "./actions/schema-check/out",
+    "lib": ["es6"],
+
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "sourceMap": true,
+    "strict": true
+  },
+  "exclude": [
+    "actions/schema-check/node_modules"
+  ]
+}

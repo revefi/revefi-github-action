@@ -1,0 +1,7 @@
+# Build files
+node_modules/
+tsconfig.tsbuildinfo
+
+# Intellij info
+.idea/
+*.iml

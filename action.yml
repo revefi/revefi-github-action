@@ -1,0 +1,40 @@
+name: 'Revefi Github Integration'
+description: 'Catches breaking schema changes before they hit production'
+author: 'https://github.com/jake-revefi'
+inputs:
+  revefi-api-token:
+    description: 'Revefi API token'
+    required: true
+  revefi-data-source-id:
+    description: 'Revefi Data Source ID'
+    required: true
+  revefi-api-endpoint:
+    description: 'Revefi API endpoint'
+    required: true
+    default: 'https://dev-gateway.revefi.com/api/v1'
+  dbt-profile-secrets:
+    description: 'JSON of environment variables to be used in dbt profile'
+    required: true
+    default: '{}'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install dbt
+      shell: bash
+      # Add any necessary dbt adapters here
+      run: |
+        pip3 install --user dbt-snowflake dbt-bigquery dbt-redshift 
+        dbt --version
+    - name: Checkout repository at PR base
+      uses: actions/checkout@v4
+      with:
+          ref: ${{ github.event.pull_request.base.sha }}
+    - name: Run schema change check
+      shell: bash
+      run: node ${{ github.action_path }}/out/github-action.js
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+        REVEFI_API_TOKEN: ${{ inputs.revefi-api-token }}
+        REVEFI_API_ENDPOINT: ${{ inputs.revefi-api-endpoint }}
+        REVEFI_DATA_SOURCE_ID: ${{ inputs.revefi-data-source-id }}
+        DBT_PROFILE_SECRETS: ${{ inputs.dbt-profile-secrets }}
